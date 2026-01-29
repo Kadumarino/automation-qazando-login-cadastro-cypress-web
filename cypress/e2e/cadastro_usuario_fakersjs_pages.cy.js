@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
 import { fa, faker } from '@faker-js/faker';
+const cadastro_page = require('../support/pages/cadastro_pages');
 
 describe('Cadastro de Usuário', () => {
 
@@ -14,11 +15,12 @@ describe('Cadastro de Usuário', () => {
 
         //preencher campos
         const name = faker.person.fullName();
-        cy.preencherNome(name);
-        cy.preencherEmail(faker.internet.email());
-        cy.preencherSenha(faker.internet.password({ length: 6 }));
-        cy.clicarCadastrar();
-        cy.validarCadastro(name);
+
+        cadastro_page.preencherNome(name);
+        cadastro_page.preencherEmail(faker.internet.email());
+        cadastro_page.preencherSenha(faker.internet.password({ length: 6 }));
+        cadastro_page.clicarCadastrar();
+        cadastro_page.validarCadastro(name);
     });
 
     it('Cadastro com nome vazio', () => {
